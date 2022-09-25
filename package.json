@@ -1,11 +1,16 @@
 {
-  "name": "p5-electron-quick-start",
+  "name": "donkey_kong",
   "version": "1.0.0",
-  "description": "A quick start for building P5 sketches in Electron.",
+  "description": "Play the game.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "mocha ./js/**/*.test.js"
+    "test": "mocha ./js/**/*.test.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "distmac": "electron-builder -m --x64",
+    "distlinux": "electron-builder -l --x64",
+    "distwin": "electron-builder -w --x64"
   },
   "repository": "https://github.com/camerenisonfire/p5-electron-quick-start",
   "keywords": [
@@ -22,6 +27,12 @@
     "electron": "^9.4.0",
     "electron-reload": "^1.5.0",
     "mocha": "^6.2.0",
-    "p5": "^0.9.0"
+    "p5": "^0.9.0",
+    "rpio": "^2.4.2"
+  },
+  "devDependencies": {
+    "electron-builder": "^23.3.3",
+    "rollup": "^2.79.1",
+    "rollup-plugin-livereload": "^2.0.5"
   }
 }
