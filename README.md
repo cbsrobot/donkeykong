@@ -1,3 +1,8 @@
+# setup repository
+
+ssh pi@192.168.1.104 sudo route add default gw 192.168.1.1
+ssh pi@192.168.1.104 sudo sh -c 'echo "nameserver 192.168.1.1" >> /etc/resolv.conf'
+
 # p5-electron-quick-start
 
 **Clone and run for a quick way to use P5js in Electron.**
