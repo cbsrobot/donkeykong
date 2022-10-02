@@ -8,6 +8,8 @@
 const p5 = require('p5');
 require('./node_modules/p5/lib/addons/p5.sound');
 
+const { ipcRenderer } = require('electron');
+
 //Imports our custom function to decide what color the fill shall be.
 //const { getFillColor } = require('./js/src/colorController');
 
@@ -87,6 +89,10 @@ let xBarCen = new Array(a);
 let yBarCen = new Array(a); //centers of the barrels
 
 let PixelEmulator
+
+let lastMessageTs = 0
+let messagesTs = []
+let messagesAverage = 0;
 
 //Starting out sketch and
 //injecting p5, as the param p, into our sketch function.
@@ -174,6 +180,27 @@ const sketch = (p) => {
     earthindex = 1
   };
 
+  p.checkLastMessageTs = () => {
+    if (p.lastMessageDelta() > 10000 ){
+      state = BATTERY1
+    } else if (messagesAverage > 300 ){
+      // not enough power
+      state = BATTERY2
+    } else if (messagesAverage > 150 ){
+      // still not enough power
+      state = BATTERY3
+    } else {
+      state = STARTSCREEN
+    }
+
+    if (frame % 50 === 0 && p.lastMessageDelta() > 600) {
+      // fill array with 1000 if needed
+      p.messagesTsPush(1000)
+      //console.log(messagesAverage)
+    }
+  }
+  
+  
   p.draw = () => {
     //let fillColor = getFillColor(p.mouseIsPressed);
     //p.fill(fillColor)
