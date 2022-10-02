@@ -220,7 +220,7 @@ const sketch = (p) => {
     } else if (messagesAverage > 150 ){
       // still not enough power
       state = BATTERY3
-    } else {
+    } else if (state == BATTERY1 || state == BATTERY2 || state == BATTERY3) {
       state = STARTSCREEN
     }
 
