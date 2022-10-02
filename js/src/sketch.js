@@ -118,6 +118,7 @@ const sketch = (p) => {
     platXsT = [
       (400,590)
     ]
+
     platXsT = [
         400,
         0,
@@ -161,6 +162,7 @@ const sketch = (p) => {
       195,
       235
     ]
+
     ladderYsT = [
       490,
       390,
@@ -212,16 +214,58 @@ const sketch = (p) => {
     //let fillColor = getFillColor(p.mouseIsPressed);
     //p.fill(fillColor)
     //p.ellipse(p.mouseX, p.mouseY, 80, 80);
+    frame = frame > 1200 ? 0 : frame + 1
+
     p.background(0);
+    //p.checkLastMessageTs();
+
+    p.textAlign(p.CENTER);
+    if (state == BATTERY1) {
+      p.fill(255, 255, 255);
+      if (Math.floor(frame / 60 % 2)) {
+        p.image(battery1, 160, 100);
+      } else {
+        p.image(battery2, 160, 100);
+      }
+      p.text("TRETEN SIE IN DIE PEDALEN UM ZU SPIELEN", 260, 360);
+      p.text("PÉDALEZ POUR JOUER", 260, 400);
+      p.text("PEDAL TO PLAY", 260, 440);
+    }
+
+    if (state == BATTERY2) {
+      p.fill(255, 255, 255);
+      if (Math.floor(frame / 60 % 2)) {
+        p.image(battery2, 160, 100);
+      } else {
+        p.image(battery3, 160, 100);
+      }
+      p.text("TRETEN SIE SCHNELLER", 260, 360);
+      p.text("PÉDALEZ PLUS VITE", 260, 400);
+      p.text("PEDAL FASTER", 260, 440);
+    }
+
+    if (state == BATTERY3) {
+      p.fill(255, 255, 255);
+      if (Math.floor(frame / 60 % 2)) {
+        p.image(battery3, 160, 100);
+      } else {
+        p.image(battery4, 160, 100);
+      }
+      p.text("NOCH ETWAS SCHNELLER", 260, 360);
+      p.text("ENCORE PLUS VITE", 260, 400);
+      p.text("EVEN FASTER", 260, 440);
+    }
     
     if (state == STARTSCREEN) {
       p.fill(255, 255, 255);
       p.image(startScrn, 25, 59.5);
-      p.text("CLICK ANY BUTTON TO PLAY", 120, 450);
+      p.text("CLICK ANY BUTTON TO PLAY", 260, 450);
     }
+    p.textAlign(p.LEFT);
+    
     if (state == GAME) { //if you are playing, 
-      if (!theme.isPlaying())
-        theme.loop()
+      //if (!theme.isPlaying())
+      //  theme.loop()
       p.play(); //play game
     }
     if (state == CONTINUESCREEN) { //if you die or win a level, go to the continue screen
@@ -419,7 +463,6 @@ const sketch = (p) => {
 
 
   p.play = () => {
-    frame = frame > 1200 ? 0 : frame + 1
     p.drawLadders();
     p.setupScreen();
     p.drawBarrels(); //makes the game play
