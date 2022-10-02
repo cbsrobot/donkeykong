@@ -1,5 +1,5 @@
 {
-  "name": "donkey_kong",
+  "name": "donkey-kong",
   "version": "1.0.0",
   "description": "Play the game.",
   "main": "main.js",
@@ -11,7 +11,8 @@
     "distmac": "electron-builder -m --x64",
     "distlinux": "electron-builder -l --x64",
     "distwin": "electron-builder -w --x64",
-    "distrpi": "electron-builder --linux deb --armv7l"
+    "distrpi64": "USE_SYSTEM_FPM=true electron-builder --linux deb --arm64",
+    "distrpi32": "USE_SYSTEM_FPM=true electron-builder --linux deb --armv7l"
   },
   "repository": "https://github.com/camerenisonfire/p5-electron-quick-start",
   "keywords": [
@@ -24,15 +25,23 @@
   ],
   "author": "Jean First <jeanfirst@gmail.com>",
   "license": "CC0-1.0",
+  "build" : {
+    "appId": "ch.mfk.donkey-kong",
+    "productName": "donkey-kong",
+    "linux": {
+      "category": "Game",
+      "desktop": "resources/donkey-kong.desktop"
+    }
+  },
   "dependencies": {
-    "electron": "^19.1.1",
-    "electron-rebuild": "^3.2.9",
     "electron-reload": "^1.5.0",
     "mocha": "^6.2.0",
     "onoff": "^6.0.3",
     "p5": "^0.9.0"
   },
   "devDependencies": {
+    "electron": "^19.1.1",
+    "electron-rebuild": "^3.2.9",
     "electron-builder": "^23.3.3",
     "rollup": "^2.79.1",
     "rollup-plugin-livereload": "^2.0.5"
