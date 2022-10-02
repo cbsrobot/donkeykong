@@ -2,3 +2,4 @@ node_modules
 unused
 *.tgz
 .DS_Store
+dist
