@@ -198,7 +198,7 @@ const sketch = (p) => {
     messagesAverage = messagesTs.reduce((a, b) => a + b, 0) / messagesTs.length;
   }
 
-  p.lastMessageDelta() = () => {
+  p.lastMessageDelta = () => {
     return Date.now() - lastMessageTs;
   }
 
