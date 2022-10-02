@@ -40,7 +40,7 @@ let winAnim = false;
 let climbAnimDelay = 0;
 let frame = 0;
 let climbAnim = 0;
-let lives = 1; //how many lives you have
+let lives = 3; //how many lives you have
 let points = 0;
 let pointFader = 0;
 let level = 1;
@@ -140,20 +140,20 @@ const sketch = (p) => {
     ]
     
     platYsT = [ // the bottom platform is made up of 2 platforms due to the size of the image,the top platform is made up of 7platforms to make a spawning area offscreen for barrels
-        590,
-        590,
-        490,
-        390,
-        290,
-        190,
-        90,
-        90,
-        90,
-        90,
-        90,
-        90,
-        90,
-        90
+      590,
+      590,
+      490,
+      390,
+      290,
+      190,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90
     ]
     
     ladderXsT = [
@@ -238,7 +238,7 @@ const sketch = (p) => {
     frame = frame > 1200 ? 0 : frame + 1
 
     p.background(0);
-    p.checkLastMessageTs();
+    //p.checkLastMessageTs();
 
     p.textAlign(p.CENTER);
     if (state == BATTERY1) {
@@ -280,7 +280,9 @@ const sketch = (p) => {
     if (state == STARTSCREEN) {
       p.fill(255, 255, 255);
       p.image(startScrn, 25, 59.5);
-      p.text("CLICK ANY BUTTON TO PLAY", 260, 450);
+      p.text("KLICKEN SIE AUF EINEN KNOPF, UM ZU SPIELEN", 260, 450);
+      p.text("CLIQUEZ SUR N'IMPORTE QUEL BOUTON POUR JOUER", 260, 490);
+      p.text("CLICK ANY BUTTON TO PLAY", 260, 530);
     }
     p.textAlign(p.LEFT);
     
@@ -293,12 +295,16 @@ const sketch = (p) => {
       p.continueScreen();
     }
     if (state == GAMEOVER) { //if you lose display this screen
-      if (theme.isPlaying())
-        theme.stop()
+      p.textAlign(p.CENTER);
+      //if (theme.isPlaying())
+      //  theme.stop()
       p.fill(255, 255, 255);
-      p.text("GAMEOVER", 150, 250);
-      p.text("SCORE: " + points, 150, 280);
-      p.text("CLICK MOUSE TO PLAY", 150, 310);
+      p.text("GAMEOVER", 260, 250);
+      p.text("PUNKTE / POINTS: " + points, 260, 290);
+      p.text("KLICKEN SIE AUF EINEN KNOPF, UM ZU SPIELEN", 260, 450);
+      p.text("CLIQUEZ SUR N'IMPORTE QUEL BOUTON POUR JOUER", 260, 490);
+      p.text("CLICK ANY BUTTON TO PLAY", 260, 530);
+      p.textAlign(p.LEFT);
     }
   };
 
@@ -517,16 +523,21 @@ const sketch = (p) => {
   
   p.continueScreen = () => { //screen that shows when you are hit by a barrel or when you complete a level
     p.fill(255);
-    p.text("SPACE TO CONTINUE", 250, 250);
-    p.text("LIVES:", 250, 280);
+    p.textAlign(p.CENTER);
+    //p.text("SPACE TO CONTINUE", 250, 250);
+    p.text("LEBEN / VIES / LIVES", 260, 250);
     for (let i = 0; i < lives; i++) {
       p.push();
-      p.translate(i * 25 + 320, 270);
+      p.translate(i * 25 + 240, 270);
       p.scale(.5);
       p.image(marioLeft, 0, 0);
       p.pop();
     }
     pointFader = 0;
+    p.text("KLICKEN SIE AUF EINEN KNOPF, UM ZU SPIELEN", 260, 450);
+    p.text("CLIQUEZ SUR N'IMPORTE QUEL BOUTON POUR JOUER", 260, 490);
+    p.text("CLICK ANY BUTTON TO PLAY", 260, 530);
+    p.textAlign(p.LEFT);
     p.resetArrays();
   }
 
@@ -731,7 +742,7 @@ const sketch = (p) => {
     p.resetArrays()
     lives = 3; //how many lives you have
     points = 0;
-    pointFader = 255;
+    pointFader = 0;
     level = 1;
   }
   
