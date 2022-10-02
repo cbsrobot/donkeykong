@@ -20,15 +20,16 @@ function createWindow() {
     height: 1080,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
-      
+      contextIsolation: false
     }
   })
 
-  pin17.watch((err, value) => {
-    mainWindow.webContents.send('gpio', {pin: 17, val: value})
+  mainWindow.webContents.on('did-frame-finish-load', (event, input) => {
+    pin17.watch((err, value) => {
+      mainWindow.webContents.send('gpio', {pin: 17, val: value})
+    });
   });
-  
+
   //mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('before-input-event', (event, input) => {
     /*
