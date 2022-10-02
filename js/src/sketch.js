@@ -24,6 +24,9 @@ let STARTSCREEN = 1;
 let GAME = 2;
 let CONTINUESCREEN = 3;
 let GAMEOVER = 4;
+let BATTERY1 = 5;
+let BATTERY2 = 6;
+let BATTERY3 = 7;
 
 let goLeft = false;
 let goRight = false;
@@ -79,7 +82,11 @@ let brrlSpin = 0; //transitions through four barrel images to make barrel "spin"
 let brrlSpinStall = 0; //delays the trasition of images
 let gravity = 0.1;
 
-let platI, marioLeft, marioRight, jumpLeft, jumpRight, climbRight, climbLeft, brrl1, brrl2, brrl3, brrl4, lddr, leftDK, rightDK, throwDK, peach, peachPlat, startScrn, earthindex, earth1, earth2, earth3, earth4
+let platI, marioLeft, marioRight, jumpLeft, jumpRight, climbRight, climbLeft
+let brrl1, brrl2, brrl3, brrl4, lddr, leftDK, rightDK, throwDK, peach, peachPlat
+let startScrn, earthindex, earth1, earth2, earth3, earth4
+let battery1, battery2, battery3, battery4
+
 let a = 15
 let yBars = new Array(a)
 let xBars = new Array(a)
@@ -618,6 +625,10 @@ const sketch = (p) => {
     earth2 = p.loadImage("assets/earth_02.png");
     earth3 = p.loadImage("assets/earth_03.png");
     earth4 = p.loadImage("assets/earth_04.png");
+    battery1 = p.loadImage("assets/battery_01.png");
+    battery2 = p.loadImage("assets/battery_02.png");
+    battery3 = p.loadImage("assets/battery_03.png");
+    battery4 = p.loadImage("assets/battery_04.png");
   }
   
   p.resetArrays = () => {
