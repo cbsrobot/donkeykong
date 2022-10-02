@@ -10,7 +10,8 @@
     "dist": "electron-builder",
     "distmac": "electron-builder -m --x64",
     "distlinux": "electron-builder -l --x64",
-    "distwin": "electron-builder -w --x64"
+    "distwin": "electron-builder -w --x64",
+    "distrpi": "electron-builder --linux deb --armv7l"
   },
   "repository": "https://github.com/camerenisonfire/p5-electron-quick-start",
   "keywords": [
@@ -21,14 +22,15 @@
     "tutorial",
     "demo"
   ],
-  "author": "Cameren Dolecheck",
+  "author": "Jean First <jeanfirst@gmail.com>",
   "license": "CC0-1.0",
   "dependencies": {
-    "electron": "^9.4.0",
+    "electron": "^19.1.1",
+    "electron-rebuild": "^3.2.9",
     "electron-reload": "^1.5.0",
     "mocha": "^6.2.0",
-    "p5": "^0.9.0",
-    "rpio": "^2.4.2"
+    "onoff": "^6.0.3",
+    "p5": "^0.9.0"
   },
   "devDependencies": {
     "electron-builder": "^23.3.3",
