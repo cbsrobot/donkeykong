@@ -238,7 +238,7 @@ const sketch = (p) => {
     frame = frame > 1200 ? 0 : frame + 1
 
     p.background(0);
-    //p.checkLastMessageTs();
+    p.checkLastMessageTs();
 
     p.textAlign(p.CENTER);
     if (state == BATTERY1) {
