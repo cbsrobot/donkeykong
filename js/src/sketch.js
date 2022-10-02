@@ -194,7 +194,7 @@ const sketch = (p) => {
 
   p.messagesTsPush = (value) => {
     messagesTs.push(value)
-    if (messagesTs.length > 10 ) {
+    if (messagesTs.length > 16 ) {
       messagesTs.shift()
     }
     messagesAverage = messagesTs.reduce((a, b) => a + b, 0) / messagesTs.length;
@@ -227,7 +227,6 @@ const sketch = (p) => {
     if (frame % 50 === 0 && p.lastMessageDelta() > 600) {
       // fill array with 1000 if needed
       p.messagesTsPush(1000)
-      //console.log(messagesAverage)
     }
   }
   
