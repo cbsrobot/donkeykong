@@ -13,6 +13,7 @@ const { ipcRenderer } = require('electron');
 //Imports our custom function to decide what color the fill shall be.
 //const { getFillColor } = require('./js/src/colorController');
 
+let canvas
 let jumpSound, theme
 let platXsT, platYsT, ladderXsT, ladderYsT
 let platXs, platYs, ladderXs, ladderYs
