@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
-const { app, globalShortcut, BrowserWindow } = require('electron')
+const { app, globalShortcut, BrowserWindow, ipcMain  } = require('electron')
 const path = require('path')
+
+const gpio = require('onoff').Gpio;
+const pin17 = new gpio(17, 'in', 'both');
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
@@ -22,6 +25,10 @@ function createWindow() {
     }
   })
 
+  pin17.watch((err, value) => {
+    mainWindow.webContents.send('gpio', {pin: 17, val: value})
+  });
+  
   //mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('before-input-event', (event, input) => {
     /*
