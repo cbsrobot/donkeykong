@@ -114,7 +114,8 @@ const sketch = (p) => {
   p.setup = () => {
     // Create the canvas
     //p.createCanvas(p.windowWidth, p.windowHeight);
-    p.createCanvas(520, 700);
+    canvas = p.createCanvas(520, 700);
+    //canvas.style('display', 'block');
     platXsT = [
       (400,590)
     ]
@@ -188,6 +189,27 @@ const sketch = (p) => {
     p.fill(255, 255, 255);
     earthindex = 1
   };
+
+  p.messagesTsPush = (value) => {
+    messagesTs.push(value)
+    if (messagesTs.length > 10 ) {
+      messagesTs.shift()
+    }
+    messagesAverage = messagesTs.reduce((a, b) => a + b, 0) / messagesTs.length;
+  }
+
+  p.lastMessageDelta() = () => {
+    return Date.now() - lastMessageTs;
+  }
+
+  ipcRenderer.on('gpio', (event, message) => {
+    if (message.val == 1){
+      p.messagesTsPush(p.lastMessageDelta())
+    } else {
+      lastMessageTs = Date.now()
+    }
+  })
+
 
   p.checkLastMessageTs = () => {
     if (p.lastMessageDelta() > 10000 ){
