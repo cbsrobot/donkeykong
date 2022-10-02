@@ -26,7 +26,14 @@ function createWindow() {
 
   mainWindow.webContents.on('did-frame-finish-load', (event, input) => {
     pin17.watch((err, value) => {
-      mainWindow.webContents.send('gpio', {pin: 17, val: value})
+      try {
+        if (value == 1) {
+          // ignore value == 0
+          mainWindow.webContents.send('gpio', {pin: 17, val: value})
+        }
+      } catch (error) {
+        console.log(error)
+      }
     });
   });
 

@@ -117,6 +117,7 @@ const sketch = (p) => {
     //p.createCanvas(p.windowWidth, p.windowHeight);
     canvas = p.createCanvas(520, 700);
     //canvas.style('display', 'block');
+    
     platXsT = [
       (400,590)
     ]
@@ -204,11 +205,9 @@ const sketch = (p) => {
   }
 
   ipcRenderer.on('gpio', (event, message) => {
-    if (message.val == 1){
-      p.messagesTsPush(p.lastMessageDelta())
-    } else {
-      lastMessageTs = Date.now()
-    }
+    // ipcMain only sends if val == 1
+    p.messagesTsPush(p.lastMessageDelta())
+    lastMessageTs = Date.now()
   })
 
 
@@ -240,7 +239,7 @@ const sketch = (p) => {
     frame = frame > 1200 ? 0 : frame + 1
 
     p.background(0);
-    //p.checkLastMessageTs();
+    p.checkLastMessageTs();
 
     p.textAlign(p.CENTER);
     if (state == BATTERY1) {
@@ -319,9 +318,18 @@ const sketch = (p) => {
   }
   
   p.keyPressed = (event) => {
-
     let key = event.key
-    console.log(key)
+
+    if (state == STARTSCREEN) {
+      state = GAME
+      return
+    }
+    if (state == GAMEOVER) {
+      p.resetGame()
+      state = STARTSCREEN
+      return
+    }
+    
     if (key == 'd') {
       if (marioX < p.windowWidth - MLEN) {
         if (!climb) { //if you are not climbing
@@ -330,6 +338,7 @@ const sketch = (p) => {
         }
       }
     }
+
     if (key == 'a') {
       if (marioX > 0) {
         if (!climb) { //if you are not climbing
@@ -345,9 +354,9 @@ const sketch = (p) => {
             jump = true; //jump
             marioYVel = -3;
             //jumpSound.rewind();
-            if (jumpSound.isPlaying())
-              jumpSound.stop();
-            jumpSound.play();
+            //if (jumpSound.isPlaying())
+            //  jumpSound.stop();
+            //jumpSound.play();
           }
       }
       if (state == CONTINUESCREEN) //restart level one
@@ -750,3 +759,7 @@ const sketch = (p) => {
 
 //Instantiates P5 sketch to keep it out of the global scope.
 const app = new p5(sketch);
+
+window.onload = () => {
+  this.focus()
+}
