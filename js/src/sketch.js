@@ -194,7 +194,7 @@ const sketch = (p) => {
 
   p.messagesTsPush = (value) => {
     messagesTs.push(value)
-    if (messagesTs.length > 16 ) {
+    if (messagesTs.length > 24 ) {
       messagesTs.shift()
     }
     messagesAverage = messagesTs.reduce((a, b) => a + b, 0) / messagesTs.length;
@@ -214,10 +214,10 @@ const sketch = (p) => {
   p.checkLastMessageTs = () => {
     if (p.lastMessageDelta() > 10000 ){
       state = BATTERY1
-    } else if (messagesAverage > 300 ){
+    } else if (messagesAverage > 600 ){ //300
       // not enough power
       state = BATTERY2
-    } else if (messagesAverage > 150 ){
+    } else if (messagesAverage > 300 ){ //150
       // still not enough power
       state = BATTERY3
     } else if (state == BATTERY1 || state == BATTERY2 || state == BATTERY3) {
