@@ -3,6 +3,20 @@
 ssh pi@192.168.1.104 sudo route add default gw 192.168.1.1
 ssh pi@192.168.1.104 sudo sh -c 'echo "nameserver 192.168.1.1" >> /etc/resolv.conf'
 
+```
+# clone
+git clone https://github.com/cbsrobot/donkeykong
+cd donkeykong
+
+# compile
+npm run distpi64
+
+# install
+# sudo apt remove -y donkey-kong
+sudo apt install  -y ./dist/donkey-kong_1.0.0_arm64.deb
+```
+
+
 # p5-electron-quick-start
 
 **Clone and run for a quick way to use P5js in Electron.**
