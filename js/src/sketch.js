@@ -700,8 +700,8 @@ const sketch = (p) => {
     brrl3 = p.loadImage("assets/barrelImage3.gif");
     brrl4 = p.loadImage("assets/barrelImage4.gif");
     lddr = p.loadImage("assets/kongLadder.png");
-    leftDK = p.loadImage("assets/DK1.gif");
-    rightDK = p.loadImage("assets/DK2.gif");
+    leftDK = p.loadImage("assets/DK1.png");
+    rightDK = p.loadImage("assets/DK2.png");
     throwDK = p.loadImage("assets/donkeyKong3.png");
     peach = p.loadImage("assets/peach.gif");
     peachPlat = p.loadImage("assets/peachPlat.jpg");
