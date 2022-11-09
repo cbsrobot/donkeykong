@@ -10,6 +10,9 @@ require('./node_modules/p5/lib/addons/p5.sound');
 
 const { ipcRenderer } = require('electron');
 
+const windowWidth = 520
+const windowHeight = 700
+
 //Imports our custom function to decide what color the fill shall be.
 //const { getFillColor } = require('./js/src/colorController');
 
@@ -115,7 +118,7 @@ const sketch = (p) => {
   p.setup = () => {
     // Create the canvas
     //p.createCanvas(p.windowWidth, p.windowHeight);
-    canvas = p.createCanvas(520, 700);
+    canvas = p.createCanvas(windowWidth, windowHeight);
     //canvas.style('display', 'block');
     
     platXsT = [
@@ -336,7 +339,7 @@ const sketch = (p) => {
     }
     
     if (key == 'd') {
-      if (marioX < p.windowWidth - MLEN) {
+      if (marioX < windowWidth - MLEN) {
         if (!climb) { //if you are not climbing
           goRight = true; //go go right
           facing = RGHT;
@@ -609,7 +612,7 @@ const sketch = (p) => {
         }
       }
       if (goRight) {
-        if (marioX < p.windowWidth - MLEN) {
+        if (marioX < windowWidth - MLEN) {
           marioXVel = 2; //make him go right
         } else {
           goRight = false;
